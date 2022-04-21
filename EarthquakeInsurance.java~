@@ -9,31 +9,35 @@
  *
  * PROGRAM PURPOSE:  Student Inserts
  */
-import java.util.Scanner;   //STUDENTS INSERT LINE COMMENTS FOR EACH IMPORT STMT.
+import java.util.Scanner;   //Import the Scanner class
 
 public class EarthquakeInsurance
 {    
-  //STUDENTS INSERT LINE COMMENTS DESCRIPTIVE OF THE PURPOSE OF EACH VARIABLE.
-  private String insured;  
-  private String coverage;
-  private String message;
-  private double homeInsVal;
-  private double richter;
-  private double payout;
-  private double deductible;   
-  private Scanner input = new Scanner(System.in);  
-  private boolean repeat;
-  private char correct;
+  //Class fields
+  private String insured;  //Stores the insured's name
+  private String coverage; //Stores the string format for the final output of payout for earthquake dmg
+  private String message; //Stores the damage assessment message for each Richter value
+  private double homeInsVal; //Stores the insured value of the home
+  private double richter; //Stores the richter scale value of the earthquake
+  private double payout; //Stores the calculated insurance payout 
+  private double deductible; //Stores the calculated insurance deductible
+  private Scanner input = new Scanner(System.in); //Scanner object to read user input
+  private boolean repeat; //Stores loop test variable
+  private char correct; //Stores user's input on whether the data is correct
   
   /**
-   * STUDENTS ARE TO DESCRIBE WHAT'S GOING ON WITH THE CODE IN METHOD BOXES.
+   * No-arg default constructor
    */
   public EarthquakeInsurance()
   {
   }//END Default Constructor
   
   /**
-   * STUDENTS ARE TO DESCRIBE WHAT'S GOING ON WITH THE CODE IN METHOD BOXES.
+   * Overloaded Constructor which takes three arguments: 
+   * String containing the name of the insured 
+   * Double containing the insured value of the home 
+   * Double containing the richter scale value of the earthquake 
+   * Arguments are used to set the values of the related variables. 
    */
   public EarthquakeInsurance(String insured, double homeInsVal, double richter)
   {
@@ -43,19 +47,37 @@ public class EarthquakeInsurance
   }//END EarthquakeInsurance(String, double, double)
   
   /**
-   * STUDENTS CODE copy() AND PROVIDE METHOD BOX COMMENTS.
+   * Copy method uses the values for insured, homeInsVal, and richter stored by
+   * the existing EarthquakInsurance object to make a copy with reference variable insuranceObj
+   * The insuranceObj is returned
    */
   
-  
+  public EarthquakeInsurance copy() 
+  {
+    EarthquakeInsurance insuranceObj = new EarthquakeInsurance(insured, homeInsVal, richter);
+    return insuranceObj; 
+  }
   
   /**
-   * STUDENTS CODE equals AND PROVIDE METHOD BOX COMMENTS.
+   * The equals method accepts another EarthquakeInsurance object and compares it to the calling object. 
+   * If the values stored in insured, homeInsVal, and richter are the same on both obejcts, the method returns true 
+   * If the listed values are not the same, the method returns false. 
    */
   
-  
+  public boolean equals(EarthquakeInsurance object2)
+  {
+    boolean isEqual = false; 
+    
+    if(insured.equals(object2.insured) && homeInsVal == 
+       object2.homeInsVal && richter == object2.richter)
+      isEqual = true;
+    
+    return isEqual;
+  }
   
   /**
-   * STUDENTS ARE TO DESCRIBE WHAT'S GOING ON WITH THE CODE IN METHOD BOXES.
+   * the setInsured method accepts the insured's name as a string. 
+   * It uses this argument to set the value of the insured class field.
    */
   public final void setInsured(String insured)
   {
@@ -64,7 +86,8 @@ public class EarthquakeInsurance
   }//END setInsured(String):  final void
   
   /**
-   * STUDENTS ARE TO DESCRIBE WHAT'S GOING ON WITH THE CODE IN METHOD BOXES.
+   * the setHomeInsVal method accepts the insured value of the home as a double. 
+   * It uses this argument to set the value of the homeInsVal class field. 
    */
   public final void setHomeInsVal(double homeInsVal)
   {
@@ -72,7 +95,8 @@ public class EarthquakeInsurance
   }//END setHomeInsVal(double):  final void  
   
   /**
-   * STUDENTS ARE TO DESCRIBE WHAT'S GOING ON WITH THE CODE IN METHOD BOXES.
+   * The setRichter method accepts the richter scale value of an earthquake as a double. 
+   * It uses this argument to set the value of the richter class field. 
    */
   public final void setRichter(double richter)
   {

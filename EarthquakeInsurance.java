@@ -7,7 +7,8 @@
  * @author Linda Shepherd
  * @version 1.00 2022/04/07 10:57 PM
  *
- * PROGRAM PURPOSE:  Student Inserts
+ * PROGRAM PURPOSE: Program that tells an insured how much will be paid out if there is an earthquake.
+ * The payout will be based off of the richter scale and insured value of the home. 
  */
 import java.util.Scanner;   //Import the Scanner class
 
@@ -104,7 +105,10 @@ public class EarthquakeInsurance
   }//END setRichter(double):  final void
   
   /**
-   * STUDENTS ARE TO DESCRIBE WHAT'S GOING ON WITH THE CODE IN METHOD BOXES.
+   * The overloaded setInsured method accepts no arguments. 
+   * It prompts the user to enter their name, validates the input, and 
+   * stores it in the insured class field. 
+   * It also capitalizes the first letter of each name.
    */
   public void setInsured()  
   { 
@@ -158,7 +162,9 @@ public class EarthquakeInsurance
   }//END setInsured():  void
   
   /**
-   * STUDENTS ARE TO DESCRIBE WHAT'S GOING ON WITH THE CODE IN METHOD BOXES.
+   * The overloaded setHomeInsVal method accepts no arguments. 
+   * It prompts the user to enter the insured value of their home, validates it, and
+   * stores it in the homeInsVal class field. 
    */
   public void setHomeInsVal()
   {
@@ -196,7 +202,10 @@ public class EarthquakeInsurance
   }//END setHomeInsVal():  final void  
   
   /**
-   * STUDENTS ARE TO DESCRIBE WHAT'S GOING ON WITH THE CODE IN METHOD BOXES.
+   * The overloaded setRichter method accepts no arguments. 
+   * It prompts the user to enter the richter scale value, validates it, and
+   * stores it in the richter class field. 
+   * Calls the testRichter() method. 
    */ 
   public void setRichter()
   {
@@ -246,7 +255,9 @@ public class EarthquakeInsurance
   }//END setRichter():  void 
   
   /**
-   * STUDENTS ARE TO DESCRIBE WHAT'S GOING ON WITH THE CODE IN METHOD BOXES.
+   * Based on the values of richter and homeInsVal: 
+   * the payout and deductible are calculated and stored in their respective class fields. 
+   * the damage assessment message is stored in the message class field.
    */  
   private void testRichter()
   {
@@ -296,7 +307,7 @@ public class EarthquakeInsurance
   }//END testRichter():  void  
   
   /**
-   * STUDENTS ARE TO DESCRIBE WHAT'S GOING ON WITH THE CODE IN METHOD BOXES.
+   * The getInsured method returns the value of the insured class field.
    */
   public String getInsured()
   {
@@ -304,7 +315,7 @@ public class EarthquakeInsurance
   }//END getInsured():  int
   
   /**
-   * STUDENTS ARE TO DESCRIBE WHAT'S GOING ON WITH THE CODE IN METHOD BOXES.
+   * The getHomeInsVal method returns the value of the homeInsVal class field.
    */
   public double getHomeInsVal()
   {
@@ -312,7 +323,7 @@ public class EarthquakeInsurance
   }//END getHomeInsVal():  double
   
   /**
-   * STUDENTS ARE TO DESCRIBE WHAT'S GOING ON WITH THE CODE IN METHOD BOXES.
+   * The getRichter method returns the value of the richter class field.
    */
   public double getRichter()
   {
@@ -320,7 +331,7 @@ public class EarthquakeInsurance
   }//END getRichter():  double
   
   /**
-   * STUDENTS ARE TO DESCRIBE WHAT'S GOING ON WITH THE CODE IN METHOD BOXES.
+   * The getPayout method returns the value of the payout class field.
    */
   public double getPayout()
   {
@@ -328,7 +339,7 @@ public class EarthquakeInsurance
   }//END getPayout():  double
   
   /**
-   * STUDENTS ARE TO DESCRIBE WHAT'S GOING ON WITH THE CODE IN METHOD BOXES.
+   * The getDeductible method returns the value of the deductible class field.
    */
   public double getDeductible()
   {
@@ -336,7 +347,7 @@ public class EarthquakeInsurance
   }//END getDeductible():  double  
   
   /**
-   * STUDENTS ARE TO DESCRIBE WHAT'S GOING ON WITH THE CODE IN METHOD BOXES.
+   * The getMessage method returns the value of the message class field.
    */
   public String getMessage()
   {
@@ -344,7 +355,8 @@ public class EarthquakeInsurance
   }//END getMessage():  String
   
   /**
-   * STUDENTS ARE TO DESCRIBE WHAT'S GOING ON WITH THE CODE IN METHOD BOXES.
+   * the validateNumber method validates integers and double entered by the user.
+   * If the input is non-numeric, a warning is printed. 
    */
   public void validateNumber()
   {
