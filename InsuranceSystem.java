@@ -45,9 +45,9 @@ public class InsuranceSystem
       checkInputFile();
       printThankYou();
     }//END if cont == 'Y' 
-    else {
-      printThankYou();
-    }//END else                          
+    
+    printThankYou();
+      
    }//END start()
   
   public void processClaims() throws IOException
@@ -123,9 +123,13 @@ public class InsuranceSystem
     String record; 
     PrintWriter outputFile = null; 
     //??
+    System.out.printf("%nEnter the file name for claims' records." 
+                        + "(WARNING: This will erase a pre-existing file!):  ");
+    File Claims.txt = new File(input.next());
     
     
-  }//END writeCLaimesRecords()
+    
+  }//END writeClaimsRecords()
   
   public void checkInputFile() 
   {
