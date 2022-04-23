@@ -4,7 +4,8 @@
  * @authors Rafael Hernandez and Sarah Skinner
  * @version 1.00 2022/04/20 10:57 PM
  *
- * PROGRAM PURPOSE:  ??
+ * PROGRAM PURPOSE: Handles the insurance claims created in the EarthquakeInsurance class 
+ * and creates a record of the claims in an output file. 
  */
 
 import java.util.Scanner;   //imports the scanner class for capturing user input
@@ -38,9 +39,9 @@ public class InsuranceSystem
     
     if(Character.toUpperCase(cont) == 'Y')
     {
-      processClaims();
-      writeClaimsRecords();
-      checkInputFile();
+      //processClaims();
+      //writeClaimsRecords();
+      //checkInputFile();
     } 
     else {
       printThankYou();
@@ -69,12 +70,20 @@ public class InsuranceSystem
   
   public void writeClaimsRecords(String[] args) 
   {
-    //??
+    String record; 
+    PrintWriter outputFile = null; 
+    
+    
+    
   }
   
   public void checkInputFile(String[] args) 
   {
-    //jdnnf
+    //File file ??
+    Scanner inputFile = new Scanner();
+    String fileRecord; 
+    
+    
   }
   
   public void printThankYou()
