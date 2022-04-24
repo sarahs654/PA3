@@ -8,11 +8,13 @@
  * and creates a record of the claims in an output file. 
  */
 
+//imports
 import java.util.Scanner;   //imports the scanner class for capturing user input
 import java.util.Calendar;  //imports the Calendar class for displaying current date/time
 import java.util.ArrayList; //imports the arraylist class 
-import java.io.*;           //imports all classes under java.io for IO exceptions, file, and printwriter
-//import calendar, arraylist, file, printwriter, ioexception
+import java.io.File;           //imports the file class
+import java.io.PrintWriter;    //imports the printwriter class 
+import java.io.IOException;    //imports the IOException class
 
 public class InsuranceSystem
 {
@@ -93,7 +95,9 @@ public class InsuranceSystem
         }
         else 
         {
-          claims[i].setInsured(claims[i-1].getInsured);       
+          claims[i].setInsured(claims[i-1].getInsured());
+          
+          
         }//END if cont == 'n'
         
       }
@@ -107,37 +111,70 @@ public class InsuranceSystem
       claims[i].setRichter();
       input.next();
       
-      aClaim = //please copy this i dont have firefox
+      aClaim = String.format("%n%nPAYOUT FOR EARTHQUAKE DAMAGE"
+                               + "%n%nHomeowner: %S"
+                               + "%n%nDate: %tD"
+                               + "%nTime: %tr%n"
+                               + "%n%-52s %4s $%,20.2f"
+                               + "%nDeductible %47s %,20.2f"
+                               + "%n%46s TOTAL %4s $%,20.2f%n",
+                             claims[i].getInsured(), dateTime, dateTime,
+                             claims[i].getMessage(), " ",
+                             claims[i].getPayout(), " ",
+                             claims[i].getDeductible(), " ",
+                             " ", claims[i].getPayout() +
+                             claims[i].getDeductible());//please copy this i dont have firefox
       claimsReport.add(aClaim);
       
       for(String eachClaim : claimsReport)
       {
-        System.out.println(eachClaim);
+        System.out.printf("%n%s", eachClaim);
       } //END enhanced for
     }//END for
     
   }//END processClaims
   
-  public void writeClaimsRecords() 
+  public void writeClaimsRecords() throws IOException
   {
     String record; 
-    PrintWriter outputFile = null; 
-    //??
+    PrintWriter outputFile;
+    
     System.out.printf("%nEnter the file name for claims' records." 
-                        + "(WARNING: This will erase a pre-existing file!):  ");
-    File Claims.txt = new File(input.next());
-    
-    
+                    + "(WARNING: This will erase a pre-existing file!):  ");
+    outputFile = new PrintWriter(input.next());  
+       
+    for(int i = 0; i < claims.length; i++)
+    {
+      record = String.format("%s, %f, %f%n", claims[i].getInsured(), claims[i].getHomeInsVal(),
+                             claims[i].getRichter());
+      outputFile.printf("%n%s", record);
+    }//END for
+      
+    outputFile.close();
+    System.out.printf("%nData written to the %s file.", outputFile);
     
   }//END writeClaimsRecords()
   
-  public void checkInputFile() 
+  public void checkInputFile() throws IOException
   {
-    String fileName = "";
-    File file = new File(fileName);
-    Scanner inputFile = new Scanner(System.in);
+    String fileName;
+    File file;
     String fileRecord; 
     
+    System.out.printf("%nEnter the name for the claims' file:  "); 
+    fileName = input.next();
+    file = new File(input.next());
+    
+    Scanner inputFile = new Scanner(file); 
+    
+    while(inputFile.hasNext())
+    {
+      fileRecord = inputFile.nextLine();
+      System.out.printf("%n%s", fileRecord);
+    } //END while iput.hasNext()
+    
+    System.out.println();
+    inputFile.close();
     
   }//END checkInputFile()
   
