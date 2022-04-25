@@ -1,5 +1,4 @@
-/**
- * 
+/** 
  * @(#)InsuranceSystem.java
  * @authors Rafael Hernandez and Sarah Skinner
  * @version 1.00 2022/04/20 10:57 PM
@@ -19,19 +18,31 @@ import java.io.IOException;    //imports the IOException class
 public class InsuranceSystem
 {
   //class data members
-  private EarthquakeInsurance[] claims; //MAY NOT WORK (maybe will work)
+  private EarthquakeInsurance[] claims; //Array of EarthquakeInsurance Objects
   private Scanner input = new Scanner(System.in); //Scanner object to read user input
   private Calendar dateTime = Calendar.getInstance(); //Calendar object to reference data and time
-  private ArrayList<String> claimsReport= new ArrayList<String>();
-  private String filename; //Stores name of output file
+  private ArrayList<String> claimsReport= new ArrayList<String>(); //claimsReport arraylist
+  private String fileName; //Stores name of output/input file
   private char cont; //Stores loop test variable
   private char correct; //Stores user's input on whether the data is correct
   
+  
+  /**
+   * InsuranceSystem() is a no-arg default constructor of the 
+   * InsuranceSystem Class
+   */
   public InsuranceSystem()
   {
     
   }//END InsuranceSystem()
   
+    /**
+   * start() prompts the user to either continue with the 
+   * earthquake coverage analyzer or exit. 
+   * If the user wishes to continue, it proceeds to 
+   * process the user's claims and store them in an output file. 
+   * Calls thankYou().
+   */
   public void start() throws IOException
   {
     //begin prompt 1 
@@ -45,21 +56,25 @@ public class InsuranceSystem
       processClaims();
       writeClaimsRecords();
       checkInputFile();
-      printThankYou();
     }//END if cont == 'Y' 
     
     printThankYou();
       
    }//END start()
-  
+
+    /**
+   * processClaims() prompts the user for the number of claims that will be filed
+   * and uses their input to create an array of claims. 
+   * Then the processed statement for each claim is printed to the console. 
+   */
   public void processClaims() throws IOException
   {
-    int size; //declaring int size variable
-    int j;    //declaring int j variable
-    int k;    //declaring int k variable
+    int size; //holds number of claims to be filed
+    int j;    //used to calculate the correct suffix for a print statement
+    int k;    //used to calculate the correct suffix for a print statement
     
-    String suffix;  //declaring string suffix variable
-    String aClaim;  //declaring string aClaim variable
+    String suffix;  //holds a number suffix for print statements
+    String aClaim;  //holds string format of processed claim statement
     
     System.out.printf("%nHow many claims will be filed? "); //prompt for asking how many claims will be filed
     size = input.nextInt();
@@ -84,8 +99,8 @@ public class InsuranceSystem
       
       if(i > 0)
       {
-        System.out.printf("%nIs this %i%s claim for the same property owner? ('Y' or 'N': ",
-                          i, suffix);
+        System.out.printf("%nIs this %d%s claim for the same property owner? ('Y' or 'N'): ",
+                          i+1, suffix);
         
         cont = Character.toLowerCase(input.next().charAt(0));
         
@@ -109,7 +124,8 @@ public class InsuranceSystem
       
       claims[i].setHomeInsVal();
       claims[i].setRichter();
-      input.next();
+      
+      input.nextLine();
       
       aClaim = String.format("%n%nPAYOUT FOR EARTHQUAKE DAMAGE"
                                + "%n%nHomeowner: %S"
@@ -130,18 +146,24 @@ public class InsuranceSystem
       {
         System.out.printf("%n%s", eachClaim);
       } //END enhanced for
-    }//END for
-    
+    }//END for 
   }//END processClaims
+  
+  /**
+   * writeClaimsRecords() prompts the user for a file name 
+   * to store the claims information in. The claims information is
+   * written to the file and saved. 
+   */
   
   public void writeClaimsRecords() throws IOException
   {
-    String record; 
-    PrintWriter outputFile;
+    String record; //holds information from each claim to write to the output file
+    PrintWriter outputFile; //Printwriter object to write to the output file
     
     System.out.printf("%nEnter the file name for claims' records." 
                     + "(WARNING: This will erase a pre-existing file!):  ");
-    outputFile = new PrintWriter(input.next());  
+    fileName = input.next();
+    outputFile = new PrintWriter(fileName);  
        
     for(int i = 0; i < claims.length; i++)
     {
@@ -151,21 +173,26 @@ public class InsuranceSystem
     }//END for
       
     outputFile.close();
-    System.out.printf("%nData written to the %s file.", outputFile);
+    System.out.printf("%nData written to the %s file.", fileName);
     
   }//END writeClaimsRecords()
   
+  /**
+   * checkInputFile() takes the name of a file that 
+   * claims have been written into and prints each line to the console.
+   */
+  
   public void checkInputFile() throws IOException
   {
-    String fileName;
-    File file;
-    String fileRecord; 
+    File file; //file object to access the input file
+    String fileRecord; //stores each line from the input file
+    Scanner inputFile; //Scanner object to read input file contents
     
-    System.out.printf("%nEnter the name for the claims' file:  "); 
+    System.out.printf("%n%nEnter the name for the claims' file:  "); 
     fileName = input.next();
-    file = new File(input.next());
+    file = new File(fileName);
     
-    Scanner inputFile = new Scanner(file); 
+    inputFile = new Scanner(file); 
     
     while(inputFile.hasNext())
     {
@@ -178,9 +205,11 @@ public class InsuranceSystem
     
   }//END checkInputFile()
   
+  /**
+   * printThankYou() prints a thank you message to the console.
+   */
   public void printThankYou()
   {
     System.out.printf("%nThank you for using the Earthquake Coverage Analyzer.");
-  }//END printThankYou
-  
+  }//END printThankYou()
 }//END application class InsuranceSystem
